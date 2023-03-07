@@ -1,13 +1,28 @@
 """
-    Use natural language to describe calendar events and generate a .ical file, which you can import into Google Calendar.
+    Use speech to describe calendar events and generate a .ical file, which you can import into Google Calendar.
 """
 
 import os
 import openai
 from icalendar import Calendar, Event
 from datetime import datetime
+import sounddevice as sd
+from scipy.io.wavfile import write
 
-user_prompt = "Today is March 7th, 2023. This Friday I want to eat Sushi on from 7pm to 8pm"
+
+fs = 44100  # this is the frequency sampling; also: 4999, 64000
+seconds = 9  # Duration of recording
+myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
+print(f"Speak now! Recording for {seconds}")
+sd.wait()
+print("finished")
+# Save as WAV file
+write('/tmp/calgpt_vocal_buffer.wav', fs, myrecording)  
+myrecording = open("/tmp/calgpt_vocal_buffer.wav", "rb")
+transcript = openai.Audio.transcribe("whisper-1", myrecording)
+user_prompt = transcript["text"]
+# user_prompt = "Today is March 7th, 2023. This Friday I want to eat Sushi from 7pm to 8pm"
+print(f"Transcript: {user_prompt}")
 
 # API Request for In-Context Learning
 examples = [
