@@ -45,6 +45,15 @@ Workout, datetime(2023,3,7,12,0,0), datetime(2023,3,7,14,0,0))
 Dentist, datetime(2023,3,8,9,0,0), datetime(2023,3,8,10,0,0))
 ```
 
+Testing out if lower sampling frequency and single channel also work for Whisper speech to text. Since it will be a smaller file and thus faster/lower cost.
+
+w/ 44kHz, 2 channel
+- Transcription time: 1.84s
+w/ 4kHz, 1 channel
+- Transcription time: 1.02s
+
+```
+
 ## Setup
 
 ```

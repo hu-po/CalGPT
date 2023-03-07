@@ -1,5 +1,7 @@
 """
     Use speech to describe calendar events and generate a .ical file, which you can import into Google Calendar.
+
+    Today is March 7th, 2023. I plan on attending a Meetup on Thursday from 1pm to 2pm.
 """
 
 import logging
@@ -12,17 +14,20 @@ import sounddevice as sd
 from icalendar import Calendar, Event
 from scipy.io.wavfile import write
 
-logging.basicConfig(level=logging.INFO)
-# logging.basicConfig(level=logging.DEBUG)
+# logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 log = logging.getLogger(__name__)
 
 
 def speech_to_text(
     # Sampling frequency
-    fs=44100, #4999
-    channels=2,
+    fs=4999,
+    channels=1,
+    # Higher quality audio
+    # fs=44100,
+    # channels=2,
     # Max recording duration
-    max_record_sec=5,
+    max_record_sec=8,
     # Recording file buffer
     record_buffer_path="/tmp/calgpt_vocal_buffer.wav",
 ):
@@ -72,6 +77,10 @@ def text_to_calendar(
         (
             "I want to go to the dentist on March 8th, 2023 from 9am to 10:30am",
             "Dentist,datetime(2023,3,8,9,0,0),datetime(2023,3,8,10,30,0)"
+        ),
+        (
+            "Today is January 1st, 2022. I will meditate for 15 minutes the next two days in the morning.",
+            "Vacation.datetime(2022,1,2,8,0,0).datetime(2022,1,2,8,15,0)|Vacation.datetime(2022,1,3,8,0,0).datetime(2022,1,3,8,15,0)"
         ),
         (
             "Today is March 6th, 2023. I want to workout on Tuesday from 2pm to 4pm. I also want to workout on Thursday from noon to 2pm.",
