@@ -27,7 +27,7 @@ def speech_to_text(
     # fs=44100,
     # channels=2,
     # Max recording duration
-    max_record_sec=8,
+    max_record_sec=12,
     # Recording file buffer
     record_buffer_path="/tmp/calgpt_vocal_buffer.wav",
 ):
@@ -80,7 +80,7 @@ def text_to_calendar(
         ),
         (
             "Today is January 1st, 2022. I will meditate for 15 minutes the next two days in the morning.",
-            "Vacation.datetime(2022,1,2,8,0,0).datetime(2022,1,2,8,15,0)|Vacation.datetime(2022,1,3,8,0,0).datetime(2022,1,3,8,15,0)"
+            "Meditate.datetime(2022,1,2,8,0,0).datetime(2022,1,2,8,15,0)|Meditate.datetime(2022,1,3,8,0,0).datetime(2022,1,3,8,15,0)"
         ),
         (
             "Today is March 6th, 2023. I want to workout on Tuesday from 2pm to 4pm. I also want to workout on Thursday from noon to 2pm.",

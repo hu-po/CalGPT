@@ -1,8 +1,14 @@
 # CalGPT
 
-Google Calendar via ChatGPT
+Google Calendar via ChatGPT. YouTube video link:
+
+[![IMAGE_ALT](https://img.youtube.com/vi/_dSQdv1w3d4/0.jpg)](https://www.youtube.com/watch?v=_dSQdv1w3d4)
+
+
+## Design and Choices
 
 https://github.com/openai/openai-cookbook
+
 
 Initially think Google Calendar's APIs might be best way to go. Negative is they require a google cloud project aka billing, and the examples have Python 2 style prints, which means old and likely no more maintained.
 
@@ -52,12 +58,12 @@ w/ 44kHz, 2 channel
 w/ 4kHz, 1 channel
 - Transcription time: 1.02s
 
-```
 
 ## Setup
 
 ```
 conda create --name calgpt python=3.10
 conda activate calgpt
+pip install -r requirements.txt
 ```
 
